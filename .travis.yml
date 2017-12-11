@@ -1,11 +1,21 @@
-language: rust
-rust:
-  - stable
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+before_install:
+  - docker pull mrkloan/tomorrow:latest
+  - docker run --name tomorrow -v .:/ -td mrkloan/tomorrow bash
+  - docker ps -a
 
 script:
-  - cargo test
+  - docker exec tomorrow python3 models/*.py
+  - docker exec tomorrow cargo test
 
 after_success:
+  - docker stop tomorrow
   - git clone https://github.com/tomorrow-paper/ci-scripts.git
   - chmod +x ./ci-scripts/cargo_bump.sh
   - ./ci-scripts/cargo_bump.sh
