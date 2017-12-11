@@ -1,6 +1,6 @@
 [package]
 name = "tomorrow-brain"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Valentin Fries <contact@fries.io>", "Vincent Milano <vincent_mot@hotmail.fr>"]
 
 [dependencies]
