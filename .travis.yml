@@ -7,12 +7,12 @@ services:
 
 before_install:
   - docker pull mrkloan/tomorrow:latest
-  - docker run --name tomorrow -v .:/ -td mrkloan/tomorrow bash
+  - docker run --name tomorrow -v .:/src -td mrkloan/tomorrow bash
   - docker ps -a
 
 script:
-  - docker exec tomorrow python3 models/*.py
-  - docker exec tomorrow cargo test
+  - docker exec tomorrow bash -c "cd /src && python3 models/*.py"
+  - docker exec tomorrow bash -c "cd /src && cargo test"
 
 after_success:
   - docker stop tomorrow
