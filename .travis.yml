@@ -1,0 +1,16 @@
+language: rust
+rust:
+  - stable
+
+script:
+  - cargo test
+
+after_success:
+  - git clone https://github.com/tomorrow-paper/ci-scripts.git
+  - chmod +x ./ci-scripts/cargo_bump.sh
+  - ./ci-scripts/cargo_bump.sh
+ 
+notifications:
+  email:
+    on_success: never
+    on_failure: always
