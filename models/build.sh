@@ -1,0 +1,1 @@
+for f in ./models/*.py; do $f; done

@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/usr/bin/python3
+
 import tensorflow as tf
 
-x = tf.placeholder(tf.int32, name = 'x')
-y = tf.placeholder(tf.int32, name = 'y')
+x = tf.placeholder(tf.float32, name = 'x')
+y = tf.placeholder(tf.float32, name = 'y')
 z = tf.add(x, y, name = 'z')
 
-tf.variables_initializer(tf.global_variables(), name = 'init')
+init = tf.global_variables_initializer()
+session = tf.Session()
+session.run(init)
 
-definition = tf.Session().graph_def
-tf.train.write_graph(definition, './models', 'addition.pb', as_text = False)
+tf.train.write_graph(session.graph_def, './models', 'addition.pb', as_text = False)

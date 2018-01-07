@@ -1,6 +1,6 @@
 use ::prelude::*;
 
-fn add(model: &Vec<u8>, a: i32, b: i32) -> Result<i32> {
+fn add(model: &Vec<u8>, a: f32, b: f32) -> Result<f32> {
     let mut x = Tensor::new(&[1]);
     let mut y = Tensor::new(&[1]);
 
@@ -32,9 +32,9 @@ mod tests {
 
     #[test]
     fn add_should_return_the_expected_result() {
-        let a = 2;
-        let b = 3;
-        let expected = 5;
+        let a = 1.5;
+        let b = 3.5;
+        let expected = 5.;
 
         let model = Model::from_path("models/addition.pb").unwrap();
         let result = add(&model.into(), a, b);
