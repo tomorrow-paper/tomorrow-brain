@@ -13,7 +13,7 @@ before_install:
   - docker ps -a
 
 script:
-  - docker exec tomorrow bash -c "cd /src && chmod +x ./models/build.sh && ./models/build.sh"
+  - docker exec tomorrow bash -c "cd /src && chmod +x ./models/*.sh && chmod +x ./models/*.py && ./models/build.sh"
   - docker exec tomorrow bash -c "cd /src && cargo test"
 
 after_success:
